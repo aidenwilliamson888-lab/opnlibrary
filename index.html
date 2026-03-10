@@ -3,11 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-<!-- Judul Dinamis - Akan diupdate oleh JavaScript -->
-<title>📚 Loading Book... - OpenLibrary</title>
-<!-- Adsterra Ad Script (ganti dengan ID Anda nanti) -->
+<!-- Title akan diupdate otomatis oleh JavaScript -->
+<title>📚 Loading Book ID: ... - OpenLibrary</title>
+<!-- Adsterra Ad Script -->
 <script type='text/javascript' src='//pl24930978.profitablecpmnetwork.com/68/8f/1c/688f1c7ed5f7e9b8e8f1c7e6f5d9c8b1.js'></script>
-<!-- Histats (akan kepasang setelah judul update) -->
 <style>
 * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
 body { background:linear-gradient(145deg, #0b1f2c 0%, #1a3440 100%); min-height:100vh; display:flex; align-items:center; justify-content:center; padding:10px; }
@@ -29,7 +28,6 @@ body { background:linear-gradient(145deg, #0b1f2c 0%, #1a3440 100%); min-height:
 .download-btn:active { transform:translateY(5px); box-shadow:0 3px 0 #b87d1f; }
 .download-btn i { font-size:clamp(1.2rem, 5vw, 1.8rem); }
 .format-badge { background:white; padding:6px 15px; border-radius:60px; display:inline-block; border:2px dashed #ffaa33; color:#1d3e4f; font-size:0.9rem; margin-top:10px; }
-/* Adsterra Banner */
 .ad-container { margin-top:30px; padding:15px; background:#f0f0f0; border-radius:15px; text-align:center; border:2px dashed #ffaa33; }
 .ad-label { font-size:0.7rem; color:#999; text-transform:uppercase; letter-spacing:2px; margin-bottom:8px; }
 .ad-banner { min-height:90px; display:flex; align-items:center; justify-content:center; background:white; border-radius:8px; overflow:hidden; }
@@ -40,7 +38,6 @@ body { background:linear-gradient(145deg, #0b1f2c 0%, #1a3440 100%); min-height:
 .footer { background:#0b1f2c; padding:15px 20px; color:#8ba0b0; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center; font-size:0.85rem; border-top:2px solid #ffaa33; }
 .footer a { color:#ffaa33; text-decoration:none; }
 
-/* Mobile Styles */
 @media (max-width:700px) {
 .content { grid-template-columns:1fr; gap:20px; padding:15px; }
 .book-cover img { max-width:220px; margin:0 auto; }
@@ -52,7 +49,6 @@ body { background:linear-gradient(145deg, #0b1f2c 0%, #1a3440 100%); min-height:
 .hero { padding:25px 15px; }
 }
 
-/* Small phones */
 @media (max-width:480px) {
 .landing-card { border-radius:20px; }
 .hero h1 { font-size:1.4rem; }
@@ -63,6 +59,18 @@ body { background:linear-gradient(145deg, #0b1f2c 0%, #1a3440 100%); min-height:
 </style>
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<!-- Histats.com  START  (aync)-->
+<script type="text/javascript">var _Hasync= _Hasync|| [];
+_Hasync.push(['Histats.start', '1,5011047,4,0,0,0,00010000']);
+_Hasync.push(['Histats.fasi', '1']);
+_Hasync.push(['Histats.track_hits', '']);
+(function() {
+var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+hs.src = ('//s10.histats.com/js15_as.js');
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+})();</script>
+<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?5011047&101" alt="" border="0"></a></noscript>
+<!-- Histats.com  END  -->
 </head>
 <body>
 <div class="landing-card" id="landingRoot">
@@ -84,29 +92,32 @@ return match ? match[1] : null;
 const workId = getWorkIdFromUrl() || 'OL554603W'; // default fallback
 document.getElementById('loadingWorkId').textContent = workId;
 
-// Update title function
-function updateTitle(bookTitle, authorName) {
-if (bookTitle && authorName) {
-document.title = `📚 Download ${bookTitle} by ${authorName} - Free PDF Ebook`;
-} else if (bookTitle) {
-document.title = `📚 Download ${bookTitle} - Free PDF Ebook`;
-} else {
-document.title = `📚 Download Book ${workId} - Free PDF Ebook`;
+// ===== FUNGSI UPDATE TITLE UNTUK HISTATS =====
+function updateTitle(bookTitle, authorName, workId, status = 'success') {
+let titleText = '';
+const now = new Date();
+const dateStr = now.toISOString().split('T')[0]; // YYYY-MM-DD
+
+if (status === 'loading') {
+titleText = `📚 Loading ${workId} - OpenLibrary [${dateStr}]`;
 }
+else if (status === 'success' && bookTitle && authorName) {
+titleText = `📚 Download ${bookTitle} by ${authorName} | ${workId} | Free PDF Ebook [${dateStr}]`;
+}
+else if (status === 'success' && bookTitle) {
+titleText = `📚 Download ${bookTitle} | ${workId} | Free PDF Ebook [${dateStr}]`;
+}
+else {
+titleText = `📚 Book ${workId} - OpenLibrary [${dateStr}]`;
 }
 
-// Histats code (akan dipasang setelah title update)
-function setupHistats() {
-var histatsScript = document.createElement('script');
-histatsScript.type = 'text/javascript';
-histatsScript.async = true;
-histatsScript.src = '//s10.histats.com/js15.js';
-document.head.appendChild(histatsScript);
-
-var histatsNoscript = document.createElement('noscript');
-histatsNoscript.innerHTML = '<a href="/" target="_blank"><img src="//sstatic1.histats.com/0.gif?4948477&101" alt="counter" border="0"></a>';
-document.body.appendChild(histatsNoscript);
+document.title = titleText;
+console.log('Title updated:', titleText);
+return titleText;
 }
+
+// Set title awal (loading)
+updateTitle(null, null, workId, 'loading');
 
 // Fetch data dari OpenLibrary
 async function loadBookData() {
@@ -126,11 +137,8 @@ const authorData = await authorRes.json();
 authorName = authorData.name;
 }
 
-// Update title dengan judul buku
-updateTitle(work.title, authorName);
-
-// Setup Histats setelah title update
-setupHistats();
+// UPDATE TITLE SUKSES
+updateTitle(work.title, authorName, workId, 'success');
 
 // Cari cover
 let coverUrl = 'https://covers.openlibrary.org/b/id/12389591-L.jpg';
@@ -150,8 +158,6 @@ description = description.value || 'A classic work from the OpenLibrary collecti
 
 // Ambil subjects
 const subjects = work.subjects ? work.subjects.slice(0, 5) : ['Fiction', 'Literature', 'Classic'];
-
-// Tahun terbit
 const publishYear = work.first_publish_year || work.created?.value?.slice(0,4) || 'Unknown';
 
 // Render halaman
@@ -199,11 +205,10 @@ ${description}
 </p>
 </div>
 
-<!-- ADSTERRA BANNER 728x90 -->
+<!-- ADSTERRA BANNER -->
 <div class="ad-container">
 <div class="ad-label">ADVERTISEMENT</div>
 <div class="ad-banner">
-<!-- Adsterra Native Banner -->
 <iframe src="//pl24930978.profitablecpmnetwork.com/af/4b/3c/af4b3c0f3d9e8b2a1c5f7e6d8b9c0a1e.html" width="728" height="90" frameborder="0" scrolling="no" style="border:none; max-width:100%;"></iframe>
 </div>
 </div>
@@ -218,8 +223,8 @@ ${description}
 `;
 
 } catch (error) {
-// Update title untuk error page
-updateTitle(null, null);
+// UPDATE TITLE ERROR
+updateTitle(null, null, workId, 'error');
 root.innerHTML = `
 <div class="error">
 <i class="fas fa-exclamation-triangle" style="font-size:4rem; color:#c00;"></i>
@@ -234,31 +239,17 @@ root.innerHTML = `
 // Load data
 loadBookData();
 
-// Adsterra Popunder Code
+// Adsterra Popunder
 var adsterra = adsterra || [];
 adsterra.push({
-zoneId: '24930978', // GANTI DENGAN ZONE ID ADSTERRA ANDA
+zoneId: '24930978',
 type: 'popunder',
 url: window.location.href
 });
 </script>
 
-<!-- Adsterra Popunder Script -->
+<!-- Adsterra Script -->
 <script type='text/javascript' src='//pl24930978.profitablecpmnetwork.com/be/a1/73/bea1735a0d9c8b9e1f3d5c7a2b8d4e6f.js'></script>
-
-<!-- Histats Counter -->
-<!-- Histats.com  START  (aync)-->
-<script type="text/javascript">var _Hasync= _Hasync|| [];
-_Hasync.push(['Histats.start', '1,5011047,4,0,0,0,00010000']);
-_Hasync.push(['Histats.fasi', '1']);
-_Hasync.push(['Histats.track_hits', '']);
-(function() {
-var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-hs.src = ('//s10.histats.com/js15_as.js');
-(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-})();</script>
-<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?5011047&101" alt="" border="0"></a></noscript>
-<!-- Histats.com  END  -->
 
 </body>
 </html>
