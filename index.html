@@ -2,43 +2,63 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>📚 Download Ebook - OpenLibrary</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+<!-- Judul Dinamis - Akan diupdate oleh JavaScript -->
+<title>📚 Loading Book... - OpenLibrary</title>
 <!-- Adsterra Ad Script (ganti dengan ID Anda nanti) -->
 <script type='text/javascript' src='//pl24930978.profitablecpmnetwork.com/68/8f/1c/688f1c7ed5f7e9b8e8f1c7e6f5d9c8b1.js'></script>
+<!-- Histats (akan kepasang setelah judul update) -->
 <style>
 * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-body { background:linear-gradient(145deg, #0b1f2c 0%, #1a3440 100%); min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px; }
-.landing-card { max-width:1200px; width:100%; background:rgba(255,255,255,0.95); backdrop-filter:blur(10px); border-radius:40px; overflow:hidden; box-shadow:0 30px 60px rgba(0,0,0,0.4); border:2px solid rgba(255,170,51,0.5); }
-.hero { background:linear-gradient(135deg, #102a36 0%, #1d3e4f 100%); padding:40px; position:relative; border-bottom:5px solid #ffaa33; text-align:center; }
-.hero h1 { color:white; font-size:2.8rem; font-weight:800; margin-bottom:15px; text-shadow:0 4px 12px rgba(0,0,0,0.3); }
-.hero p { color:#ffaa33; font-size:1.3rem; font-weight:300; }
-.content { padding:40px; display:grid; grid-template-columns:300px 1fr; gap:40px; }
+body { background:linear-gradient(145deg, #0b1f2c 0%, #1a3440 100%); min-height:100vh; display:flex; align-items:center; justify-content:center; padding:10px; }
+.landing-card { max-width:1200px; width:100%; background:rgba(255,255,255,0.95); backdrop-filter:blur(10px); border-radius:30px; overflow:hidden; box-shadow:0 30px 60px rgba(0,0,0,0.4); border:2px solid rgba(255,170,51,0.5); }
+.hero { background:linear-gradient(135deg, #102a36 0%, #1d3e4f 100%); padding:30px 20px; position:relative; border-bottom:5px solid #ffaa33; text-align:center; }
+.hero h1 { color:white; font-size:clamp(1.5rem, 6vw, 2.8rem); font-weight:800; margin-bottom:10px; text-shadow:0 4px 12px rgba(0,0,0,0.3); line-height:1.3; }
+.hero p { color:#ffaa33; font-size:clamp(1rem, 4vw, 1.3rem); font-weight:300; }
+.content { padding:20px; display:grid; grid-template-columns:300px 1fr; gap:30px; }
 .book-cover { text-align:center; }
-.book-cover img { width:100%; border-radius:20px; box-shadow:0 20px 30px rgba(0,0,0,0.3); border:3px solid white; transition:transform 0.3s; }
+.book-cover img { width:100%; max-width:280px; border-radius:20px; box-shadow:0 20px 30px rgba(0,0,0,0.3); border:3px solid white; transition:transform 0.3s; }
 .book-cover img:hover { transform:scale(1.02); }
-.book-info h2 { font-size:2.2rem; color:#0b1f2c; margin-bottom:10px; }
-.author { font-size:1.4rem; color:#ffaa33; margin-bottom:20px; font-weight:600; }
-.meta { display:flex; gap:15px; margin:20px 0; flex-wrap:wrap; }
-.meta-item { background:#f0f5fa; padding:8px 16px; border-radius:40px; font-size:0.9rem; font-weight:600; color:#1d3e4f; border:1px solid #c0d0e0; }
-.description { background:#f8faff; padding:25px; border-radius:20px; margin:25px 0; border-left:8px solid #ffaa33; line-height:1.6; color:#2c4050; }
-.download-section { background:linear-gradient(145deg, #f5f9ff 0%, #e8f0fa 100%); padding:30px; border-radius:30px; margin-top:20px; }
-.download-btn { background:#ffaa33; border:none; border-radius:60px; padding:18px 40px; font-size:1.4rem; font-weight:800; color:#0b1f2c; display:inline-flex; align-items:center; gap:15px; cursor:pointer; box-shadow:0 12px 0 #b87d1f; transition:0.1s; text-decoration:none; margin-right:20px; }
-.download-btn:active { transform:translateY(6px); box-shadow:0 6px 0 #b87d1f; }
-.download-btn i { font-size:1.8rem; }
-.format-badge { background:white; padding:8px 20px; border-radius:60px; display:inline-block; border:2px dashed #ffaa33; color:#1d3e4f; }
+.book-info h2 { font-size:clamp(1.5rem, 5vw, 2.2rem); color:#0b1f2c; margin-bottom:8px; line-height:1.3; }
+.author { font-size:clamp(1.1rem, 4vw, 1.4rem); color:#ffaa33; margin-bottom:15px; font-weight:600; }
+.meta { display:flex; gap:10px; margin:15px 0; flex-wrap:wrap; }
+.meta-item { background:#f0f5fa; padding:6px 14px; border-radius:40px; font-size:0.85rem; font-weight:600; color:#1d3e4f; border:1px solid #c0d0e0; white-space:nowrap; }
+.description { background:#f8faff; padding:20px; border-radius:20px; margin:20px 0; border-left:8px solid #ffaa33; line-height:1.6; color:#2c4050; font-size:clamp(0.9rem, 3vw, 1rem); }
+.download-section { background:linear-gradient(145deg, #f5f9ff 0%, #e8f0fa 100%); padding:25px; border-radius:25px; margin-top:20px; }
+.download-btn { background:#ffaa33; border:none; border-radius:60px; padding:clamp(12px, 4vw, 18px) clamp(20px, 6vw, 40px); font-size:clamp(1.1rem, 4vw, 1.4rem); font-weight:800; color:#0b1f2c; display:inline-flex; align-items:center; gap:10px; cursor:pointer; box-shadow:0 8px 0 #b87d1f; transition:0.1s; text-decoration:none; width:fit-content; }
+.download-btn:active { transform:translateY(5px); box-shadow:0 3px 0 #b87d1f; }
+.download-btn i { font-size:clamp(1.2rem, 5vw, 1.8rem); }
+.format-badge { background:white; padding:6px 15px; border-radius:60px; display:inline-block; border:2px dashed #ffaa33; color:#1d3e4f; font-size:0.9rem; margin-top:10px; }
 /* Adsterra Banner */
-.ad-container { margin-top:40px; padding:20px; background:#f0f0f0; border-radius:20px; text-align:center; border:2px dashed #ffaa33; }
-.ad-label { font-size:0.8rem; color:#999; text-transform:uppercase; letter-spacing:2px; margin-bottom:10px; }
-.ad-banner { min-height:120px; display:flex; align-items:center; justify-content:center; background:white; border-radius:10px; overflow:hidden; }
-.loading { text-align:center; padding:60px; }
+.ad-container { margin-top:30px; padding:15px; background:#f0f0f0; border-radius:15px; text-align:center; border:2px dashed #ffaa33; }
+.ad-label { font-size:0.7rem; color:#999; text-transform:uppercase; letter-spacing:2px; margin-bottom:8px; }
+.ad-banner { min-height:90px; display:flex; align-items:center; justify-content:center; background:white; border-radius:8px; overflow:hidden; }
+.ad-banner iframe { max-width:100%; height:auto; }
+.loading { text-align:center; padding:40px 20px; }
 .loading i { font-size:3rem; color:#ffaa33; margin-bottom:20px; }
-.error { text-align:center; padding:60px; color:#c00; }
-.footer { background:#0b1f2c; padding:20px 40px; color:#8ba0b0; display:flex; justify-content:space-between; align-items:center; font-size:0.9rem; border-top:2px solid #ffaa33; }
+.error { text-align:center; padding:40px 20px; color:#c00; }
+.footer { background:#0b1f2c; padding:15px 20px; color:#8ba0b0; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center; font-size:0.85rem; border-top:2px solid #ffaa33; }
 .footer a { color:#ffaa33; text-decoration:none; }
-@media (max-width:800px) {
-.content { grid-template-columns:1fr; }
-.hero h1 { font-size:2rem; }
+
+/* Mobile Styles */
+@media (max-width:700px) {
+.content { grid-template-columns:1fr; gap:20px; padding:15px; }
+.book-cover img { max-width:220px; margin:0 auto; }
+.meta { justify-content:center; }
+.meta-item { font-size:0.75rem; padding:4px 10px; }
+.download-section { text-align:center; }
+.download-btn { width:100%; justify-content:center; }
+.format-badge { display:block; text-align:center; }
+.hero { padding:25px 15px; }
+}
+
+/* Small phones */
+@media (max-width:480px) {
+.landing-card { border-radius:20px; }
+.hero h1 { font-size:1.4rem; }
+.content { padding:12px; }
+.description { padding:15px; }
+.footer { flex-direction:column; text-align:center; }
 }
 </style>
 <!-- Font Awesome -->
@@ -49,6 +69,7 @@ body { background:linear-gradient(145deg, #0b1f2c 0%, #1a3440 100%); min-height:
 <div class="loading" id="loadingState">
 <i class="fas fa-spinner fa-pulse"></i>
 <h3>Loading book from OpenLibrary...</h3>
+<p style="color:#666; margin-top:10px;">Work ID: <span id="loadingWorkId"></span></p>
 </div>
 </div>
 
@@ -61,6 +82,31 @@ return match ? match[1] : null;
 }
 
 const workId = getWorkIdFromUrl() || 'OL554603W'; // default fallback
+document.getElementById('loadingWorkId').textContent = workId;
+
+// Update title function
+function updateTitle(bookTitle, authorName) {
+if (bookTitle && authorName) {
+document.title = `📚 Download ${bookTitle} by ${authorName} - Free PDF Ebook`;
+} else if (bookTitle) {
+document.title = `📚 Download ${bookTitle} - Free PDF Ebook`;
+} else {
+document.title = `📚 Download Book ${workId} - Free PDF Ebook`;
+}
+}
+
+// Histats code (akan dipasang setelah title update)
+function setupHistats() {
+var histatsScript = document.createElement('script');
+histatsScript.type = 'text/javascript';
+histatsScript.async = true;
+histatsScript.src = '//s10.histats.com/js15.js';
+document.head.appendChild(histatsScript);
+
+var histatsNoscript = document.createElement('noscript');
+histatsNoscript.innerHTML = '<a href="/" target="_blank"><img src="//sstatic1.histats.com/0.gif?4948477&101" alt="counter" border="0"></a>';
+document.body.appendChild(histatsNoscript);
+}
 
 // Fetch data dari OpenLibrary
 async function loadBookData() {
@@ -79,6 +125,12 @@ const authorRes = await fetch(`https://openlibrary.org${authorKey}.json`);
 const authorData = await authorRes.json();
 authorName = authorData.name;
 }
+
+// Update title dengan judul buku
+updateTitle(work.title, authorName);
+
+// Setup Histats setelah title update
+setupHistats();
 
 // Cari cover
 let coverUrl = 'https://covers.openlibrary.org/b/id/12389591-L.jpg';
@@ -105,14 +157,14 @@ const publishYear = work.first_publish_year || work.created?.value?.slice(0,4) |
 // Render halaman
 root.innerHTML = `
 <div class="hero">
-<h1><i class="fas fa-book-open" style="margin-right:15px;"></i>${work.title}</h1>
+<h1><i class="fas fa-book-open" style="margin-right:10px;"></i>${work.title}</h1>
 <p>Free eBook Download · OpenLibrary Edition</p>
 </div>
 
 <div class="content">
 <div class="book-cover">
 <img src="${coverUrl}" alt="${work.title} cover" onerror="this.src='https://covers.openlibrary.org/b/id/12389591-L.jpg'">
-<div style="margin-top:20px; background:#f0f0f0; padding:10px; border-radius:10px; font-size:0.8rem;">
+<div style="margin-top:15px; background:#f0f0f0; padding:8px; border-radius:8px; font-size:0.75rem;">
 <i class="fas fa-barcode"></i> Work ID: ${workId}
 </div>
 </div>
@@ -128,21 +180,21 @@ root.innerHTML = `
 </div>
 
 <div class="description">
-<i class="fas fa-quote-left" style="color:#ffaa33; margin-right:10px;"></i>
+<i class="fas fa-quote-left" style="color:#ffaa33; margin-right:8px;"></i>
 ${description}
 </div>
 
 <div class="download-section">
-<h3 style="margin-bottom:20px;"><i class="fas fa-download" style="color:#ffaa33;"></i> Download Free Ebook</h3>
+<h3 style="margin-bottom:15px; font-size:clamp(1.1rem, 4vw, 1.3rem;"><i class="fas fa-download" style="color:#ffaa33;"></i> Download Free Ebook</h3>
 
-<div style="display:flex; flex-wrap:wrap; gap:15px; align-items:center;">
+<div style="display:flex; flex-wrap:wrap; gap:15px; align-items:center; justify-content:flex-start;">
 <a href="https://magafiles.com/1863142" class="download-btn" target="_blank" rel="nofollow">
 <i class="fas fa-file-pdf"></i> DOWNLOAD PDF
 </a>
 <span class="format-badge"><i class="fas fa-tablet-alt"></i> EPUB · MOBI · PDF</span>
 </div>
 
-<p style="margin-top:20px; color:#666; font-size:0.9rem;">
+<p style="margin-top:15px; color:#666; font-size:0.85rem;">
 <i class="fas fa-shield-alt" style="color:#ffaa33;"></i> Safe & secure download · No virus · Instant access
 </p>
 </div>
@@ -152,7 +204,7 @@ ${description}
 <div class="ad-label">ADVERTISEMENT</div>
 <div class="ad-banner">
 <!-- Adsterra Native Banner -->
-<iframe src="//pl24930978.profitablecpmnetwork.com/af/4b/3c/af4b3c0f3d9e8b2a1c5f7e6d8b9c0a1e.html" width="728" height="90" frameborder="0" scrolling="no" style="border:none;"></iframe>
+<iframe src="//pl24930978.profitablecpmnetwork.com/af/4b/3c/af4b3c0f3d9e8b2a1c5f7e6d8b9c0a1e.html" width="728" height="90" frameborder="0" scrolling="no" style="border:none; max-width:100%;"></iframe>
 </div>
 </div>
 
@@ -166,6 +218,8 @@ ${description}
 `;
 
 } catch (error) {
+// Update title untuk error page
+updateTitle(null, null);
 root.innerHTML = `
 <div class="error">
 <i class="fas fa-exclamation-triangle" style="font-size:4rem; color:#c00;"></i>
@@ -180,20 +234,31 @@ root.innerHTML = `
 // Load data
 loadBookData();
 
-// Adsterra Popunder (opsional - aktifkan nanti)
-// var adsterra = adsterra || []; adsterra.push({ zoneId: '24930978' });
+// Adsterra Popunder Code
+var adsterra = adsterra || [];
+adsterra.push({
+zoneId: '24930978', // GANTI DENGAN ZONE ID ADSTERRA ANDA
+type: 'popunder',
+url: window.location.href
+});
 </script>
 
-<!-- Adsterra Popunder Code (simpan di sini) -->
-<script type='text/javascript'>
-    var adsterra = adsterra || [];
-    adsterra.push({
-        zoneId: '24930978', // GANTI DENGAN ZONE ID ADSTERRA ANDA
-        type: 'popunder',
-        url: window.location.href
-    });
-</script>
+<!-- Adsterra Popunder Script -->
 <script type='text/javascript' src='//pl24930978.profitablecpmnetwork.com/be/a1/73/bea1735a0d9c8b9e1f3d5c7a2b8d4e6f.js'></script>
+
+<!-- Histats Counter -->
+<!-- Histats.com  START  (aync)-->
+<script type="text/javascript">var _Hasync= _Hasync|| [];
+_Hasync.push(['Histats.start', '1,5011047,4,0,0,0,00010000']);
+_Hasync.push(['Histats.fasi', '1']);
+_Hasync.push(['Histats.track_hits', '']);
+(function() {
+var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+hs.src = ('//s10.histats.com/js15_as.js');
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+})();</script>
+<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?5011047&101" alt="" border="0"></a></noscript>
+<!-- Histats.com  END  -->
 
 </body>
 </html>
