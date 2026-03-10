@@ -208,7 +208,7 @@ const now = new Date();
 const dateStr = now.toISOString().split('T')[0]; // YYYY-MM-DD
 
 if (status === 'loading') {
-titleText = `Download ${workId} - DigitalLibrary [${dateStr}]`;
+titleText = `Download ${workId} - DigitalLibrary`;
 }
 else if (status === 'success' && bookTitle && authorName) {
 titleText = `📚 Download ${bookTitle} by ${authorName} | ${workId} | Free PDF Ebook [${dateStr}]`;
