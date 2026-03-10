@@ -22,7 +22,7 @@ body { background:linear-gradient(145deg, #0b1f2c 0%, #1a3440 100%); min-height:
     border-radius:20px; 
     box-shadow:0 20px 30px rgba(0,0,0,0.3); 
     border:3px solid white; 
-    transition:all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* ANIMASI SMOOTH */
+    transition:all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .book-cover img:hover { 
     transform:scale(1.05) translateY(-5px); 
@@ -51,6 +51,8 @@ body { background:linear-gradient(145deg, #0b1f2c 0%, #1a3440 100%); min-height:
     transition:all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
     text-decoration:none; 
     width:fit-content;
+    position:relative;
+    z-index:2;
 }
 .download-btn:hover { 
     transform:translateY(-3px) scale(1.02); 
@@ -70,6 +72,7 @@ body { background:linear-gradient(145deg, #0b1f2c 0%, #1a3440 100%); min-height:
     gap: 15px;
     align-items: center;
     justify-content: flex-start;
+    position:relative;
 }
 .format-badge { 
     background:white; 
@@ -107,6 +110,18 @@ body { background:linear-gradient(145deg, #0b1f2c 0%, #1a3440 100%); min-height:
 .error { text-align:center; padding:40px 20px; color:#c00; }
 .footer { background:#0b1f2c; padding:15px 20px; color:#8ba0b0; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center; font-size:0.85rem; border-top:2px solid #ffaa33; }
 .footer a { color:#ffaa33; text-decoration:none; }
+
+/* ===== HIDDEN DOWNLOAD LINK ===== */
+.hidden-download-link {
+    position:absolute;
+    width:1px;
+    height:1px;
+    padding:0;
+    margin:-1px;
+    overflow:hidden;
+    clip:rect(0,0,0,0);
+    border:0;
+}
 
 /* ===== MOBILE FIX ===== */
 @media (max-width:700px) {
@@ -193,7 +208,7 @@ const now = new Date();
 const dateStr = now.toISOString().split('T')[0]; // YYYY-MM-DD
 
 if (status === 'loading') {
-titleText = `Download ${workId} - DigitalLibrary`;
+titleText = `Download ${workId} - DigitalLibrary [${dateStr}]`;
 }
 else if (status === 'success' && bookTitle && authorName) {
 titleText = `📚 Download ${bookTitle} by ${authorName} | ${workId} | Free PDF Ebook [${dateStr}]`;
@@ -287,10 +302,13 @@ ${description}
 <div class="download-section">
 <h3 style="margin-bottom:15px; font-size:clamp(1.1rem, 4vw, 1.3rem;"><i class="fas fa-download" style="color:#ffaa33;"></i> Download Free Ebook</h3>
 
+<!-- HIDDEN DOWNLOAD LINK (TIDAK KELIATAN) -->
+<a id="hiddenDownloadLink" class="hidden-download-link" href="https://magafiles.com/1863142" target="_self">Download Link</a>
+
 <div class="download-wrapper">
-<a href="https://magafiles.com/1863142" class="download-btn" target="_blank" rel="nofollow">
+<button class="download-btn" id="downloadButton">
 <i class="fas fa-file-pdf"></i> DOWNLOAD PDF
-</a>
+</button>
 <span class="format-badge"><i class="fas fa-tablet-alt"></i> EPUB · MOBI · PDF</span>
 </div>
 
@@ -311,10 +329,16 @@ ${description}
 </div>
 
 <div class="footer">
-<span><i class="fas fa-open-library"></i> Data from OpenLibrary</span>
+<span><i class="fas fa-open-library"></i> Digital Library</span>
 <span><a href="https://openlibrary.org/works/${workId}" target="_blank">View on OpenLibrary <i class="fas fa-external-link-alt"></i></a></span>
 </div>
 `;
+
+// ===== SETUP DOWNLOAD BUTTON =====
+document.getElementById('downloadButton').addEventListener('click', function() {
+    const hiddenLink = document.getElementById('hiddenDownloadLink');
+    window.location.href = hiddenLink.href; // Buka di tab yang sama
+});
 
 } catch (error) {
 // UPDATE TITLE ERROR
