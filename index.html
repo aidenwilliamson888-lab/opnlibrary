@@ -27,7 +27,40 @@ body { background:linear-gradient(145deg, #0b1f2c 0%, #1a3440 100%); min-height:
 .download-btn { background:#ffaa33; border:none; border-radius:60px; padding:clamp(12px, 4vw, 18px) clamp(20px, 6vw, 40px); font-size:clamp(1.1rem, 4vw, 1.4rem); font-weight:800; color:#0b1f2c; display:inline-flex; align-items:center; gap:10px; cursor:pointer; box-shadow:0 8px 0 #b87d1f; transition:0.1s; text-decoration:none; width:fit-content; }
 .download-btn:active { transform:translateY(5px); box-shadow:0 3px 0 #b87d1f; }
 .download-btn i { font-size:clamp(1.2rem, 5vw, 1.8rem); }
-.format-badge { background:white; padding:6px 15px; border-radius:60px; display:inline-block; border:2px dashed #ffaa33; color:#1d3e4f; font-size:0.9rem; margin-top:10px; }
+.download-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+    justify-content: flex-start;
+}
+.format-badge { 
+    background:white; 
+    padding:8px 20px; 
+    border-radius:60px; 
+    display:inline-block; 
+    border:2px dashed #ffaa33; 
+    color:#1d3e4f; 
+    font-size:1rem;
+    font-weight:500;
+    white-space:nowrap;
+}
+.format-badge i {
+    margin-right:5px;
+    color:#ffaa33;
+}
+.safe-text {
+    margin-top:15px; 
+    color:#666; 
+    font-size:0.9rem;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
+}
+.safe-text i {
+    color:#ffaa33;
+}
 .ad-container { margin-top:30px; padding:15px; background:#f0f0f0; border-radius:15px; text-align:center; border:2px dashed #ffaa33; }
 .ad-label { font-size:0.7rem; color:#999; text-transform:uppercase; letter-spacing:2px; margin-bottom:8px; }
 .ad-banner { min-height:90px; display:flex; align-items:center; justify-content:center; background:white; border-radius:8px; overflow:hidden; }
@@ -38,23 +71,46 @@ body { background:linear-gradient(145deg, #0b1f2c 0%, #1a3440 100%); min-height:
 .footer { background:#0b1f2c; padding:15px 20px; color:#8ba0b0; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center; font-size:0.85rem; border-top:2px solid #ffaa33; }
 .footer a { color:#ffaa33; text-decoration:none; }
 
+/* ===== MOBILE FIX: SEMUA JADI CENTER ===== */
 @media (max-width:700px) {
 .content { grid-template-columns:1fr; gap:20px; padding:15px; }
 .book-cover img { max-width:220px; margin:0 auto; }
 .meta { justify-content:center; }
 .meta-item { font-size:0.75rem; padding:4px 10px; }
 .download-section { text-align:center; }
-.download-btn { width:100%; justify-content:center; }
-.format-badge { display:block; text-align:center; }
+.download-wrapper { 
+    justify-content:center !important; 
+    flex-direction:column; 
+    align-items:center; 
+    width:100%;
+}
+.download-btn { 
+    width:100%; 
+    justify-content:center;
+    margin-bottom:5px;
+}
+.format-badge { 
+    display:block; 
+    text-align:center; 
+    width:100%;
+    white-space:normal;
+    padding:10px 15px;
+}
+.safe-text { 
+    justify-content:center; 
+    text-align:center;
+}
 .hero { padding:25px 15px; }
 }
 
+/* ===== SMALL PHONES ===== */
 @media (max-width:480px) {
 .landing-card { border-radius:20px; }
 .hero h1 { font-size:1.4rem; }
 .content { padding:12px; }
 .description { padding:15px; }
 .footer { flex-direction:column; text-align:center; }
+.format-badge { font-size:0.9rem; }
 }
 </style>
 <!-- Font Awesome -->
@@ -99,7 +155,7 @@ const now = new Date();
 const dateStr = now.toISOString().split('T')[0]; // YYYY-MM-DD
 
 if (status === 'loading') {
-titleText = `📚 Loading ${workId} - OpenLibrary [${dateStr}]`;
+titleText = `${workId} - DigitalLibrary`;
 }
 else if (status === 'success' && bookTitle && authorName) {
 titleText = `📚 Download ${bookTitle} by ${authorName} | ${workId} | Free PDF Ebook [${dateStr}]`;
@@ -193,16 +249,16 @@ ${description}
 <div class="download-section">
 <h3 style="margin-bottom:15px; font-size:clamp(1.1rem, 4vw, 1.3rem;"><i class="fas fa-download" style="color:#ffaa33;"></i> Download Free Ebook</h3>
 
-<div style="display:flex; flex-wrap:wrap; gap:15px; align-items:center; justify-content:flex-start;">
+<div class="download-wrapper">
 <a href="https://magafiles.com/1863142" class="download-btn" target="_blank" rel="nofollow">
 <i class="fas fa-file-pdf"></i> DOWNLOAD PDF
 </a>
 <span class="format-badge"><i class="fas fa-tablet-alt"></i> EPUB · MOBI · PDF</span>
 </div>
 
-<p style="margin-top:15px; color:#666; font-size:0.85rem;">
-<i class="fas fa-shield-alt" style="color:#ffaa33;"></i> Safe & secure download · No virus · Instant access
-</p>
+<div class="safe-text">
+<i class="fas fa-shield-alt"></i> Safe & secure download · No virus · Instant access
+</div>
 </div>
 
 <!-- ADSTERRA BANNER -->
